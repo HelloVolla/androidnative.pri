@@ -49,7 +49,7 @@ static QVariant convertToQVariant(QAndroidJniObject value) {
     } else if (env->IsInstanceOf(value.object<jobject>(),jclass_of_string)) {
         v = value.toString();
     } else if (env->IsInstanceOf(value.object<jobject>(),jclass_of_long)) {
-        v = value.callMethod<jlong>("longValue","()J");
+        v.fromValue(value.callMethod<jlong>("longValue","()J"));
     } else if (env->IsInstanceOf(value.object<jobject>(),jclass_of_float)) {
         v = value.callMethod<jfloat>("floatValue","()F");
     } else if (env->IsInstanceOf(value.object<jobject>(),jclass_of_double)) {
